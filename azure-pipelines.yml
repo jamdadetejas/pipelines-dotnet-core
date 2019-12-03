@@ -16,23 +16,22 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-steps:
-  - task: UseDotNet@2
-    inputs:
-      version: '3.0.x'
+- task: UseDotNet@2
+  inputs:
+    version: '3.0.x'
 
-  - task: UseDotNet@2
-    inputs:
-      version: '2.2.x'
-      packageType: runtime
-steps:
+- task: UseDotNet@2
+  inputs:
+    version: '2.2.x'
+    packageType: runtime
+
 - task: UseDotNet@2
   displayName: 'Install .NET Core SDK'
   inputs:
     version: 3.0.x
     performMultiLevelLookup: true
 # do this before your build tasks
-steps:
+
 - task: DotNetCoreCLI@2
   inputs:
     command: restore
@@ -41,7 +40,7 @@ steps:
     nugetConfigPath: NuGet.config    # Relative to root of the repository
     externalFeedCredentials: <Name of the NuGet service connection>
 # ...
-steps:
+
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
